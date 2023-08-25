@@ -377,7 +377,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.layout_data = QWidget()
         self.layout_data.setObjectName(u"layout_data")
-        self.layout_data.setGeometry(QRect(0, 0, 667, 529))
+        self.layout_data.setGeometry(QRect(0, 0, 350, 249))
         self.verticalLayout_16 = QVBoxLayout(self.layout_data)
         self.verticalLayout_16.setObjectName(u"verticalLayout_16")
         self.widget_ordem_servico = QWidget(self.layout_data)
@@ -727,7 +727,8 @@ class Ui_MainWindow(object):
         self.verticalLayout_18.setObjectName(u"verticalLayout_18")
         self.lineEdit_search = QLineEdit(self.widget_5)
         self.lineEdit_search.setObjectName(u"lineEdit_search")
-        self.lineEdit_search.setStyleSheet(u"height: 25px;")
+        self.lineEdit_search.setStyleSheet(u"height: 25px;\n"
+"color: rgb(36, 31, 49);")
 
         self.verticalLayout_18.addWidget(self.lineEdit_search)
 

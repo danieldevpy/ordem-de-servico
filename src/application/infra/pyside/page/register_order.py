@@ -38,6 +38,7 @@ class RegisterOrderPage:
 
     def _create_fields(self):
         categorys = crud_categorys.get_categorys()
+        
         self.fields = {}
         self.fields["Dados do Cliente"] = {
             "Nome Completo": self.page.line_nome_completo,

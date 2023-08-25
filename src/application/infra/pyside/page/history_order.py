@@ -21,6 +21,7 @@ class HistoryPage:
         self.page.radio_close.clicked.connect(lambda: self._set_filter(2))
         self.page.table_history_order.itemEntered.connect(self._change_cursor)
         self.page.table_history_order.itemDoubleClicked.connect(self._item_clicked)
+        self.page.lineEdit_search.textChanged.connect(self._search_line)
         self._get_orders()
         self._set_filter(search)   
         
@@ -53,6 +54,26 @@ class HistoryPage:
                 orders.append(order)
         self.filter_orders = orders
         self._set_orders()
+
+    def _search_line(self, text: str):
+        aux = self.filter_orders
+        search = []
+        for order in self.filter_orders:
+            _json = order.data_json.replace("'", '"')
+            data_json = json.loads(_json)
+            name_cliente: str = data_json['Dados do Cliente']['Nome Completo']
+            if text.lower() in name_cliente.lower() or text.lower() in order.date.lower():
+                search.append(order)
+            try:
+                if int(text) == order.id and not order in search:
+                    search.append(order)
+            except:
+                pass
+
+        self.filter_orders = search
+        self._set_orders()
+        self.filter_orders = aux
+
 
     def _set_orders(self):
         self.page.table_history_order.setRowCount(0)

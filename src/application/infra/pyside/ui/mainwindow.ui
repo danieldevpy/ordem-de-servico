@@ -549,8 +549,8 @@ QListWidget{
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>667</width>
-             <height>529</height>
+             <width>350</width>
+             <height>249</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_16">
@@ -1046,7 +1046,8 @@ font-size: 24px;</string>
              <item>
               <widget class="QLineEdit" name="lineEdit_search">
                <property name="styleSheet">
-                <string notr="true">height: 25px;</string>
+                <string notr="true">height: 25px;
+color: rgb(36, 31, 49);</string>
                </property>
                <property name="placeholderText">
                 <string>PESQUISAR</string>

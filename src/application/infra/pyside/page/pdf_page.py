@@ -3,7 +3,7 @@ from src.application.infra.pyside.widgets.custom_messages import show_message, s
 from PySide6.QtWebEngineWidgets import QWebEngineView
 from src.domain.entity.order import Order
 from src.application.infra.pdf.generate_pdf import GeneratePdfHTML
-from src.application.infra.sqlite.crud_order import update_order
+from src.application.infra.sqlite.crud_order import update_order, delete_order
 
 class PDFPage(QMainWindow):
     
@@ -80,6 +80,7 @@ class PDFPage(QMainWindow):
         reponse = show_message_with_confirmation("information", "Deletar Ordem", "Você realmente deseja deletar essa ordem?")
         if not reponse:
             return
+        delete_order(self.order)
         if self.remove_order:
             self.remove_order(self.order)
         self._update()

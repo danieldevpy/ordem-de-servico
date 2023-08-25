@@ -24,6 +24,13 @@ def update_order(order: Order):
         session.add(o)
         session.commit()
 
+def delete_order(order: Order):
+    with Session(engine) as session:
+        statement = select(OrderService).where(OrderService.id == order.id)
+        o = session.exec(statement).first()
+        session.delete(o)
+        session.commit()
+
 def get_orders() -> List[Order]:
     with Session(engine) as session:
         list_orders = []
