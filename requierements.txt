@@ -1,0 +1,15 @@
+defusedxml==0.7.1
+fonttools==4.42.1
+fpdf2==2.6.1
+greenlet==2.0.2
+Pillow==10.0.0
+pydantic==1.10.12
+PyMuPDFb==1.23.0
+PySide6==6.5.2
+PySide6-Addons==6.5.2
+PySide6-Essentials==6.5.2
+shiboken6==6.5.2
+SQLAlchemy==1.4.41
+sqlalchemy2-stubs==0.0.2a35
+sqlmodel==0.0.8
+typing_extensions==4.7.1
