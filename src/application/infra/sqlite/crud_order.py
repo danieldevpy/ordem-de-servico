@@ -13,6 +13,16 @@ def create_order(json_data: str) -> bool:
         except TypeError as e:
             return False, e
 
+def create_by_entity(order: Order):
+    with Session(engine) as session:
+            new_order = OrderService(data_json=str(order.data_json), date=str(order.date))
+            session.add(new_order)
+            try:
+                session.commit()
+                return new_order.id, False
+            except TypeError as e:
+                return False, e
+
 def update_order(order: Order):
     with Session(engine) as session:
         statement = select(OrderService).where(OrderService.id == order.id)

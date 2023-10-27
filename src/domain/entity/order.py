@@ -5,5 +5,5 @@ from dataclasses import dataclass
 class Order:
     id: int
     data_json: str
-    status: str
+    status: bool
     date: str
