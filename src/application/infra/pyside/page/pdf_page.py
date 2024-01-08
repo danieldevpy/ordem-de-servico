@@ -1,14 +1,17 @@
 from src.application.infra.pyside.ui.core import *
 from src.application.infra.pyside.widgets.custom_messages import show_message, show_message_with_confirmation
 from PySide6.QtWebEngineWidgets import QWebEngineView
+from src.application.infra.pyside.page.main_window import Ui_MainWindow
 from src.domain.entity.order import Order
 from src.application.infra.pdf.generate_pdf import GeneratePdfHTML
 from src.application.infra.sqlite.crud_order import update_order, delete_order
+from src.application.infra.pyside.page.edit_order import EditOrderPage
 
 class PDFPage(QMainWindow):
     
-    def __init__(self, order: Order):
+    def __init__(self, order: Order, main_page: Ui_MainWindow):
         super(PDFPage, self).__init__()
+        self.page = main_page
         self.setWindowTitle("Visualizar Ordem")
         self.setGeometry(0, 28, 1000, 750)
         self.resize(1061, 614)
@@ -20,7 +23,7 @@ class PDFPage(QMainWindow):
         self.setCentralWidget(self.central_widget)
 
         self.layout = QVBoxLayout(self.central_widget)
-
+  
         self.webView = QWebEngineView()
         sizePolicy1 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Expanding)
         sizePolicy1.setHorizontalStretch(0)
@@ -46,15 +49,28 @@ class PDFPage(QMainWindow):
         self.delet = QPushButton("Deletar Ordem de Serviço")
         self.delet.clicked.connect(self._delete_order)
 
+        self.btn_edit_page = QPushButton("Editar Ordem de Serviço")
+        self.btn_edit_page.clicked.connect(self._edit_page)
+
         self.layout.addWidget(self.label)
         self.layout.addWidget(self.r1)
         self.layout.addWidget(self.r2)
         self.layout.addWidget(self.button)
+        self.layout.addWidget(self.btn_edit_page)
         self.layout.addWidget(self.delet)
 
         self.webView.setHtml(self.pdf_html)
 
         self._check_radio()
+
+    def _edit_page(self):
+        self.close()
+        edit_page = EditOrderPage(self)
+        edit_page.show()
+        edit_page.hide(self.page)
+    
+    def descobrindo(self):
+        print('oi')
 
     def _check_radio(self):
         if self.order.status:

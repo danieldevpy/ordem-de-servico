@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>703</width>
-    <height>623</height>
+    <height>644</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,7 +27,7 @@
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="main_page">
        <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -525,12 +525,17 @@ QPlainTextEdit{
 }
 QListWidget{
 	color:black;
-	background-color: rgb(246, 245, 244);
 	border-radius: 6px;
 	border-left: 3px solid  rgb(36, 31, 49);
 	border-right: 3px solid  rgb(36, 31, 49);
 	border-bottom: 2px solid #e1dfdf;
-
+	padding-bottom: 10px;
+	min-height: 100px;
+}
+QListWidget::item {
+    background-color:  rgb(244, 244, 244);
+    margin: 2px;
+	padding: 1px;
 }</string>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -550,7 +555,7 @@ QListWidget{
              <x>0</x>
              <y>0</y>
              <width>667</width>
-             <height>529</height>
+             <height>550</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_16">
@@ -564,7 +569,6 @@ QListWidget{
                    <property name="font">
                     <font>
                      <pointsize>-1</pointsize>
-                     <weight>75</weight>
                      <bold>true</bold>
                     </font>
                    </property>
@@ -764,7 +768,6 @@ QPushButton::hover{
           <property name="font">
            <font>
             <pointsize>-1</pointsize>
-            <weight>75</weight>
             <bold>true</bold>
            </font>
           </property>
@@ -1015,7 +1018,6 @@ QPushButton::hover{
              <property name="font">
               <font>
                <pointsize>-1</pointsize>
-               <weight>75</weight>
                <bold>true</bold>
               </font>
              </property>

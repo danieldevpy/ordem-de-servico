@@ -5,6 +5,7 @@ from src.application.infra.pyside.page.main_window import Ui_MainWindow
 from src.application.infra.sqlite.crud_order import get_orders
 from src.application.infra.pyside.page.pdf_page import PDFPage
 from src.domain.entity.order import Order
+from datetime import timedelta
 import time
 
 
@@ -24,18 +25,19 @@ class HistoryPage:
         self.page.radio_close.clicked.connect(lambda: self._set_filter(2))
         self.page.table_history_order.itemEntered.connect(self._change_cursor)
         self.page.table_history_order.itemDoubleClicked.connect(self._item_clicked)
-        # self.page.lineEdit_search.textChanged.connect(self._search_line)
         self.page.btn_s_h_o.clicked.connect(self._search_orders)
         self._get_orders()
-        self._set_filter_fields()
+        self._set_filter_fields(search)
 
-        
     def disassemble(self):
         self.orders = None
         self.filter_orders = None
         self.page.table_history_order.itemEntered.disconnect(self._change_cursor)
         self.page.table_history_order.itemDoubleClicked.disconnect(self._item_clicked)
+        self.page.btn_s_h_o.clicked.disconnect(self._search_orders)
+        self.page.lineEdit_search.clear()
         self.page.comboBox_search.clear()
+        self.page.radio_all.setChecked(False)
         self._remove_orders()
         self._remove_filter()
 
@@ -55,7 +57,9 @@ class HistoryPage:
     def _set_filter_orders(self, orders: List[Order]):
         self.filter_orders = orders
 
-    def _set_filter_fields(self):
+    def _set_filter_fields(self, search):
+
+        
         self.th_search = QThread()
         self.worker = WorkerSearch()
         # config worker
@@ -65,10 +69,14 @@ class HistoryPage:
         self.worker.setComboBox.connect(self._set_value_comboBox)
         self.worker.finish.connect(self.th_search.quit)
         self.worker.finish.connect(self.worker.deleteLater)
-        self.worker.finish.connect(self._set_filter)
         # config thread
         self.th_search.started.connect(self.worker.run)
         self.th_search.finished.connect(self.th_search.deleteLater)
+        if search:
+            self.th_search.start()
+            return self._set_filter(search)
+        self.worker.finish.connect(self._set_filter)
+      
         self.th_search.start()
 
 
@@ -96,12 +104,9 @@ class HistoryPage:
         self.th_filter.finished.connect(self.th_filter.deleteLater)
         self.th_filter.start()
         self.page.btn_s_h_o.setEnabled(False)
-        
 
     def _set_filter(self, search=None):
-        self.page.radio_all.setCheckable(True)
-        self.page.radio_open.setCheckable(True)
-        self.page.radio_close.setCheckable(True)
+  
         options = {1: True, 2: False}
         orders = []
         for order in self.orders:
@@ -111,6 +116,15 @@ class HistoryPage:
             else:
                 orders.append(order)
         self.filter_orders = orders
+        print(search)
+        match search:
+            case None:
+                self.page.radio_all.setChecked(True)
+            case 1:
+                self.page.radio_open.setChecked(True)
+            case 2:
+                self.page.radio_close.setChecked(True)
+               
         self._set_orders()
 
     def _set_orders(self):
@@ -136,7 +150,7 @@ class HistoryPage:
              
     def _item_clicked(self, item: QTableWidgetItem):
         order = self.filter_orders[item.row()]
-        pdf_view = PDFPage(order)
+        pdf_view = PDFPage(order, self.page)
         pdf_view.update_status = self._set_filter
         pdf_view.remove_order = self._remove_order_list
         pdf_view.show()
@@ -191,7 +205,7 @@ class WorkerFilter(QObject):
     setFilter = Signal(list)
 
     def run(self):
-        print('run')
+        init = time.time()
         self.setProgessBar.emit(0)
         total = len(self.orders)
         results = []
@@ -205,6 +219,6 @@ class WorkerFilter(QObject):
                         results.append(order)
                 value = int(((i+1)/total)*100)
                 self.setProgessBar.emit(value)
-            
+    
         self.setFilter.emit(results)
         self.finish.emit()

@@ -1,4 +1,4 @@
-from src.application.infra.pyside.ui.core import QListWidget, QInputDialog, Qt
+from src.application.infra.pyside.ui.core import QListWidget, QInputDialog, Qt, QListWidgetItem, QAbstractItemView
 from src.application.infra.pyside.widgets.custom_messages import get_text
 from src.application.infra.pyside.widgets.custom_dialog import CustomDialog
 
@@ -16,12 +16,18 @@ class CustomListWidget(QListWidget):
         if item is None:
             new_item_text, ok = get_text("Adicionar Item", "Digite o novo item:")
             if ok and new_item_text:
-                self.addItem(new_item_text)
+                new_item = QListWidgetItem(f'({self.count()+1}) {new_item_text}')
+                self.addItem(new_item)
+                self.scrollToItem(new_item, QAbstractItemView.ScrollHint.EnsureVisible)
+
         else:
             self.memory = item
             dialog = CustomDialog(f"Alterar item: {item.text()}", item.text(), [self.edit_item, self.remove_item])
             dialog.exec_()
             super().mouseDoubleClickEvent(event)
+    
+    def reorder(self):
+        pass
 
     def edit_item(self, item_name):
         self.memory.setText(item_name)
@@ -35,8 +41,10 @@ class CustomListWidget(QListWidget):
         texts = []
         for index in range(self.count()):
             item = self.item(index)
-            texts.append(item.text())
-
+            text = item.text()
+            for i in range(len(text)):
+                if text[i] == ")":
+                    texts.append(text[i+2:])
         return texts
     
     def clear_object(self):

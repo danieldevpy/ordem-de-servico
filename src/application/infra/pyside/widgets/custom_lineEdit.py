@@ -7,7 +7,7 @@ class CustomLineEdit(QLineEdit):
         self.setObjectName(u"line_"+name)
 
     def get_text_object(self):
-        return self.text()
+        return self.text().title()
     
     def clear_object(self):
         self.clear()

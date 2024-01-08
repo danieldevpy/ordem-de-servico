@@ -1,7 +1,5 @@
 from fpdf import FPDF
 import base64
-import io
-import os
 import json
 from src.domain.entity.order import Order
 
@@ -11,8 +9,7 @@ class GeneratePdfHTML:
     def generate(cls, order: Order = None) -> str:
         pdf = FPDF()
         pdf.add_page()
-        font_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'unicode.ttf')
-        pdf.add_font('ArialUnicodeMS', '', font_path, uni=True)
+        pdf.add_font('ArialUnicodeMS', '', 'unicode.ttf', uni=True)
         pdf.set_font("Arial", size=12)
 
         line_height = pdf.font_size * 2.5
@@ -24,13 +21,13 @@ class GeneratePdfHTML:
             pdf.set_fill_color(245, 245, 245)
             pdf.set_text_color(0, 0, 0)
             pdf.set_font("Arial", "B", size=16)
-            pdf.cell(0, line_height, titulo, ln=True, align="L", fill=True)
+            pdf.cell(0, line_height, titulo.upper(), ln=True, align="L", fill=True)
             
             for field in data_json[titulo]:
                 pdf.set_fill_color(255, 255, 255)
                 pdf.set_text_color(50, 50, 50)
                 pdf.set_font("Arial", "B", size=12)
-                pdf.multi_cell(pdf.w//2.6, line_height, field, border=1, align="CENTER",
+                pdf.multi_cell(pdf.w//2.6, line_height, field.upper(), border=1, align="CENTER",
                         new_x="RIGHT", new_y="TOP", max_line_height=pdf.font_size*10, fill=True)
                 pdf.set_font("ArialUnicodeMS", size=12)
                 try:
@@ -40,8 +37,8 @@ class GeneratePdfHTML:
                         for item in value:
                             aux = aux + " " + item + ","
                         value = aux[:-1]
-                    
-                    pdf.multi_cell(pdf.w//1.9, line_height, value, border=1, align="CENTER",
+                
+                    pdf.multi_cell(pdf.w//1.9, line_height, value.upper(), border=1, align="CENTER",
                         new_x="RIGHT", new_y="TOP", max_line_height=pdf.font_size*10, fill=True)
                     
                     if len(value) > 100:

@@ -27,7 +27,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(703, 623)
+        MainWindow.resize(703, 644)
         MainWindow.setStyleSheet(u"")
         self.actionVoltar_para_tela_inicial = QAction(MainWindow)
         self.actionVoltar_para_tela_inicial.setObjectName(u"actionVoltar_para_tela_inicial")
@@ -359,13 +359,18 @@ class Ui_MainWindow(object):
 "}\n"
 "QListWidget{\n"
 "	color:black;\n"
-"	background-color: rgb(246, 245, 244);\n"
 "	border-radius: 6px;\n"
 "	border-left: 3px solid  rgb(36, 31, 49);\n"
-"	bor"
-                        "der-right: 3px solid  rgb(36, 31, 49);\n"
-"	border-bottom: 2px solid #e1dfdf;\n"
-"\n"
+"	border-right: 3px solid  rgb(36, 31, 49);\n"
+""
+                        "	border-bottom: 2px solid #e1dfdf;\n"
+"	padding-bottom: 10px;\n"
+"	min-height: 100px;\n"
+"}\n"
+"QListWidget::item {\n"
+"    background-color:  rgb(244, 244, 244);\n"
+"    margin: 2px;\n"
+"	padding: 1px;\n"
 "}")
         self.verticalLayout_2 = QVBoxLayout(self.create_order)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
@@ -377,7 +382,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.layout_data = QWidget()
         self.layout_data.setObjectName(u"layout_data")
-        self.layout_data.setGeometry(QRect(0, 0, 667, 529))
+        self.layout_data.setGeometry(QRect(0, 0, 667, 550))
         self.verticalLayout_16 = QVBoxLayout(self.layout_data)
         self.verticalLayout_16.setObjectName(u"verticalLayout_16")
         self.widget_ordem_servico = QWidget(self.layout_data)
@@ -869,7 +874,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(3)
+        self.stackedWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
