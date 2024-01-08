@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,10 +14,26 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Ordem de Serviços</string>
+  </property>
+  <property name="windowIcon">
+   <iconset theme="applications-science">
+    <normaloff>.</normaloff>.</iconset>
+  </property>
+  <property name="windowOpacity">
+   <double>1.000000000000000</double>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
+  </property>
+  <property name="documentMode">
+   <bool>false</bool>
+  </property>
+  <property name="tabShape">
+   <enum>QTabWidget::Rounded</enum>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="styleSheet">
@@ -27,7 +46,7 @@
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="main_page">
        <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -529,12 +548,13 @@ QListWidget{
 	border-left: 3px solid  rgb(36, 31, 49);
 	border-right: 3px solid  rgb(36, 31, 49);
 	border-bottom: 2px solid #e1dfdf;
-	padding-bottom: 10px;
 	min-height: 100px;
+
 }
 QListWidget::item {
     background-color:  rgb(244, 244, 244);
     margin: 2px;
+	margin-bottom: 5px;
 	padding: 1px;
 }</string>
        </property>
@@ -554,8 +574,8 @@ QListWidget::item {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>667</width>
-             <height>550</height>
+             <width>321</width>
+             <height>261</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_16">
@@ -671,7 +691,8 @@ font-size: 20px;</string>
                      <widget class="QPushButton" name="btn_save_cliente">
                       <property name="styleSheet">
                        <string notr="true">background-color: rgb(222, 221, 218);
-color:black;</string>
+color:black;
+padding: 4px;</string>
                       </property>
                       <property name="text">
                        <string>SALVAR CLIENTE</string>
@@ -1044,58 +1065,6 @@ font-size: 24px;</string>
          <widget class="QWidget" name="widget_5" native="true">
           <layout class="QHBoxLayout" name="horizontalLayout_8">
            <item>
-            <layout class="QVBoxLayout" name="verticalLayout_18">
-             <item>
-              <widget class="QComboBox" name="comboBox_search">
-               <property name="styleSheet">
-                <string notr="true">color: rgb(0, 0, 0);</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLineEdit" name="lineEdit_search">
-               <property name="styleSheet">
-                <string notr="true">height: 25px;
-color: rgb(36, 31, 49);</string>
-               </property>
-               <property name="placeholderText">
-                <string>PESQUISAR</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <layout class="QVBoxLayout" name="verticalLayout_7">
-             <item>
-              <widget class="QPushButton" name="btn_s_h_o">
-               <property name="styleSheet">
-                <string notr="true">color: rgb(0, 0, 0);</string>
-               </property>
-               <property name="text">
-                <string>BUSCAR</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <spacer name="horizontalSpacer_2">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeType">
-              <enum>QSizePolicy::Expanding</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item>
             <layout class="QVBoxLayout" name="verticalLayout_19">
              <item>
               <widget class="QRadioButton" name="radio_all">
@@ -1145,13 +1114,88 @@ color: rgb(36, 31, 49);</string>
              </property>
             </spacer>
            </item>
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_18">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QComboBox" name="comboBox_search">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(0, 0, 0);
+padding:  5px;
+border-radius:6px;
+border: 1px solid grey;</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEdit_search">
+               <property name="styleSheet">
+                <string notr="true">
+color: rgb(0, 0, 0);
+padding:  5px;
+border-radius:6px;
+border: 1px solid grey;</string>
+               </property>
+               <property name="placeholderText">
+                <string>...</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_7">
+             <item>
+              <widget class="QPushButton" name="btn_s_h_o">
+               <property name="styleSheet">
+                <string notr="true">color: rgb(0, 0, 0);
+padding: 10px;
+background-color: rgb(240, 240, 240);
+</string>
+               </property>
+               <property name="text">
+                <string>BUSCAR</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_2">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Expanding</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
           </layout>
          </widget>
         </item>
         <item>
          <widget class="QProgressBar" name="progressBar">
           <property name="styleSheet">
-           <string notr="true">color: rgb(192, 191, 188);</string>
+           <string notr="true"> QProgressBar {
+        border: 2px solid rgba(33, 37, 43, 180);
+        border-radius: 5px;
+        text-align: center;
+        background-color: rgba(33, 37, 43, 180);
+        color: black;
+		height: 5px;
+    }
+    QProgressBar::chunk {
+        background-color: rgb(234, 234, 234);
+
+    }</string>
           </property>
           <property name="value">
            <number>24</number>
@@ -1159,13 +1203,17 @@ color: rgb(36, 31, 49);</string>
          </widget>
         </item>
         <item>
-         <widget class="QTableWidget" name="table_history_order">
-          <property name="cursor" stdset="0">
-           <cursorShape>ArrowCursor</cursorShape>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QTableWidget{
-	border:none;
+         <widget class="QWidget" name="widget_6" native="true">
+          <layout class="QVBoxLayout" name="verticalLayout_9">
+           <item>
+            <widget class="QTableWidget" name="table_history_order">
+             <property name="cursor" stdset="0">
+              <cursorShape>ArrowCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QTableWidget{
+	border-bottom: 5px solid grey;
+	border-radius: 25px;
 }
 QHeaderView::section { 
 padding: 10px;
@@ -1176,73 +1224,68 @@ color: rgb(36, 31, 49);
 background-color: rgb(222, 221, 218);
 
 }
-QTableWidget::item:hover {
-	color: rgb(46, 52, 54);
-}
-QTableWidget::item {
-	background-color: rgb(246, 245, 244);
-	color: rgb(36, 31, 49);
-	margin-top: 3px;
-}
-QTableWidget::item:selected {
-	color: rgb(0, 0, 0);
-}
 QToolTip {
 	color: white; 
 	background-color: rgb(165, 29, 45); 
 	border: 1px solid gray;
  }</string>
-          </property>
-          <property name="editTriggers">
-           <set>QAbstractItemView::NoEditTriggers</set>
-          </property>
-          <property name="selectionMode">
-           <enum>QAbstractItemView::SingleSelection</enum>
-          </property>
-          <property name="selectionBehavior">
-           <enum>QAbstractItemView::SelectRows</enum>
-          </property>
-          <property name="textElideMode">
-           <enum>Qt::ElideLeft</enum>
-          </property>
-          <property name="gridStyle">
-           <enum>Qt::NoPen</enum>
-          </property>
-          <attribute name="horizontalHeaderDefaultSectionSize">
-           <number>150</number>
-          </attribute>
-          <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
-           <bool>false</bool>
-          </attribute>
-          <attribute name="horizontalHeaderStretchLastSection">
-           <bool>true</bool>
-          </attribute>
-          <attribute name="verticalHeaderVisible">
-           <bool>false</bool>
-          </attribute>
-          <attribute name="verticalHeaderDefaultSectionSize">
-           <number>50</number>
-          </attribute>
-          <column>
-           <property name="text">
-            <string>ID ORDEM</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>CLIENTE</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>STATUS</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>DATA ORDEM</string>
-           </property>
-          </column>
+             </property>
+             <property name="editTriggers">
+              <set>QAbstractItemView::NoEditTriggers</set>
+             </property>
+             <property name="alternatingRowColors">
+              <bool>true</bool>
+             </property>
+             <property name="selectionMode">
+              <enum>QAbstractItemView::SingleSelection</enum>
+             </property>
+             <property name="selectionBehavior">
+              <enum>QAbstractItemView::SelectRows</enum>
+             </property>
+             <property name="textElideMode">
+              <enum>Qt::ElideLeft</enum>
+             </property>
+             <property name="gridStyle">
+              <enum>Qt::NoPen</enum>
+             </property>
+             <attribute name="horizontalHeaderDefaultSectionSize">
+              <number>150</number>
+             </attribute>
+             <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+              <bool>false</bool>
+             </attribute>
+             <attribute name="horizontalHeaderStretchLastSection">
+              <bool>true</bool>
+             </attribute>
+             <attribute name="verticalHeaderVisible">
+              <bool>false</bool>
+             </attribute>
+             <attribute name="verticalHeaderDefaultSectionSize">
+              <number>50</number>
+             </attribute>
+             <column>
+              <property name="text">
+               <string>ID ORDEM</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>CLIENTE</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>STATUS</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>DATA ORDEM</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+          </layout>
          </widget>
         </item>
        </layout>

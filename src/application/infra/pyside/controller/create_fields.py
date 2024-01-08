@@ -13,16 +13,20 @@ class CreateFields:
 
     @classmethod
     def create(cls, categorys: List[Category], layout: QLayout):
+  
         inputs_field = {}
         widgets_field = []
         for category in categorys:
-            print(len(category.fields))
+        
             inputs_field[category.name] = {}
             widget = CustomWidget(name=category.name)
+
             vertical_w = QVBoxLayout(widget)
+       
             label = CustomLabel(parent=widget, name=category.name, title=True)
             line = CustomLine(parent=widget,name=category.name)
             frame = CustomFrame(parent=widget,name=category.name)
+        
             vertical_w.addWidget(label)
             vertical_w.addWidget(line)
             vertical_w.addWidget(frame)
@@ -33,9 +37,9 @@ class CreateFields:
             if category.fields:
                 text_short = [True for field in category.fields if field.type_field == "texto curto"]
                 if len(text_short) == 2:
-                    print(text_short)
+                
                     vertical_duple = QHBoxLayout(frame)
-
+                    vertical_duple.setContentsMargins(0, 0, 0, 0)
                   
                     for field in category.fields:
                         vertical_layout_create = QVBoxLayout()
@@ -54,7 +58,7 @@ class CreateFields:
                         vertical_duple.addLayout(vertical_layout_create)
                 else:
                     vertical_f = QVBoxLayout(frame)
-
+                    vertical_f.setContentsMargins(0, 0, 0, 0)
                     for field in category.fields:
                         if field.type_field == "marcação":
                             custom_field = RegisterWidgets.get(field.type_field)(parent=widget, name=field.name)

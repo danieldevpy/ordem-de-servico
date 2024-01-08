@@ -5,9 +5,6 @@ from src.application.infra.pyside.page.main_window import Ui_MainWindow
 from src.application.infra.sqlite.crud_order import get_orders
 from src.application.infra.pyside.page.pdf_page import PDFPage
 from src.domain.entity.order import Order
-from datetime import timedelta
-import time
-
 
 
 class HistoryPage:
@@ -205,7 +202,6 @@ class WorkerFilter(QObject):
     setFilter = Signal(list)
 
     def run(self):
-        init = time.time()
         self.setProgessBar.emit(0)
         total = len(self.orders)
         results = []

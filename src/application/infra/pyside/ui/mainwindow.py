@@ -21,14 +21,28 @@ from PySide6.QtWidgets import (QAbstractItemView, QApplication, QComboBox, QFram
     QListWidget, QListWidgetItem, QMainWindow, QMenu,
     QMenuBar, QProgressBar, QPushButton, QRadioButton,
     QScrollArea, QSizePolicy, QSpacerItem, QStackedWidget,
-    QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget)
+    QTabWidget, QTableWidget, QTableWidgetItem, QVBoxLayout,
+    QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
+        MainWindow.setWindowModality(Qt.NonModal)
         MainWindow.resize(703, 644)
+        icon = QIcon()
+        iconThemeName = u"applications-science"
+        if QIcon.hasThemeIcon(iconThemeName):
+            icon = QIcon.fromTheme(iconThemeName)
+        else:
+            icon.addFile(u".", QSize(), QIcon.Normal, QIcon.Off)
+
+        MainWindow.setWindowIcon(icon)
+        MainWindow.setWindowOpacity(1.000000000000000)
+        MainWindow.setAutoFillBackground(False)
         MainWindow.setStyleSheet(u"")
+        MainWindow.setDocumentMode(False)
+        MainWindow.setTabShape(QTabWidget.Rounded)
         self.actionVoltar_para_tela_inicial = QAction(MainWindow)
         self.actionVoltar_para_tela_inicial.setObjectName(u"actionVoltar_para_tela_inicial")
         self.actionLayout_Ordens = QAction(MainWindow)
@@ -364,12 +378,13 @@ class Ui_MainWindow(object):
 "	border-right: 3px solid  rgb(36, 31, 49);\n"
 ""
                         "	border-bottom: 2px solid #e1dfdf;\n"
-"	padding-bottom: 10px;\n"
 "	min-height: 100px;\n"
+"\n"
 "}\n"
 "QListWidget::item {\n"
 "    background-color:  rgb(244, 244, 244);\n"
 "    margin: 2px;\n"
+"	margin-bottom: 5px;\n"
 "	padding: 1px;\n"
 "}")
         self.verticalLayout_2 = QVBoxLayout(self.create_order)
@@ -382,7 +397,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.layout_data = QWidget()
         self.layout_data.setObjectName(u"layout_data")
-        self.layout_data.setGeometry(QRect(0, 0, 667, 550))
+        self.layout_data.setGeometry(QRect(0, 0, 321, 261))
         self.verticalLayout_16 = QVBoxLayout(self.layout_data)
         self.verticalLayout_16.setObjectName(u"verticalLayout_16")
         self.widget_ordem_servico = QWidget(self.layout_data)
@@ -461,7 +476,8 @@ class Ui_MainWindow(object):
         self.btn_save_cliente = QPushButton(self.widget_dados_cliente)
         self.btn_save_cliente.setObjectName(u"btn_save_cliente")
         self.btn_save_cliente.setStyleSheet(u"background-color: rgb(222, 221, 218);\n"
-"color:black;")
+"color:black;\n"
+"padding: 4px;")
 
         self.horizontalLayout.addWidget(self.btn_save_cliente, 0, Qt.AlignRight)
 
@@ -728,39 +744,6 @@ class Ui_MainWindow(object):
         self.widget_5.setObjectName(u"widget_5")
         self.horizontalLayout_8 = QHBoxLayout(self.widget_5)
         self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
-        self.verticalLayout_18 = QVBoxLayout()
-        self.verticalLayout_18.setObjectName(u"verticalLayout_18")
-        self.comboBox_search = QComboBox(self.widget_5)
-        self.comboBox_search.setObjectName(u"comboBox_search")
-        self.comboBox_search.setStyleSheet(u"color: rgb(0, 0, 0);")
-
-        self.verticalLayout_18.addWidget(self.comboBox_search)
-
-        self.lineEdit_search = QLineEdit(self.widget_5)
-        self.lineEdit_search.setObjectName(u"lineEdit_search")
-        self.lineEdit_search.setStyleSheet(u"height: 25px;\n"
-"color: rgb(36, 31, 49);")
-
-        self.verticalLayout_18.addWidget(self.lineEdit_search)
-
-
-        self.horizontalLayout_8.addLayout(self.verticalLayout_18)
-
-        self.verticalLayout_7 = QVBoxLayout()
-        self.verticalLayout_7.setObjectName(u"verticalLayout_7")
-        self.btn_s_h_o = QPushButton(self.widget_5)
-        self.btn_s_h_o.setObjectName(u"btn_s_h_o")
-        self.btn_s_h_o.setStyleSheet(u"color: rgb(0, 0, 0);")
-
-        self.verticalLayout_7.addWidget(self.btn_s_h_o)
-
-
-        self.horizontalLayout_8.addLayout(self.verticalLayout_7)
-
-        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_8.addItem(self.horizontalSpacer_2)
-
         self.verticalLayout_19 = QVBoxLayout()
         self.verticalLayout_19.setObjectName(u"verticalLayout_19")
         self.radio_all = QRadioButton(self.widget_5)
@@ -788,17 +771,75 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_8.addItem(self.horizontalSpacer_3)
 
+        self.verticalLayout_18 = QVBoxLayout()
+        self.verticalLayout_18.setSpacing(0)
+        self.verticalLayout_18.setObjectName(u"verticalLayout_18")
+        self.comboBox_search = QComboBox(self.widget_5)
+        self.comboBox_search.setObjectName(u"comboBox_search")
+        self.comboBox_search.setStyleSheet(u"color: rgb(0, 0, 0);\n"
+"padding:  5px;\n"
+"border-radius:6px;\n"
+"border: 1px solid grey;")
+
+        self.verticalLayout_18.addWidget(self.comboBox_search)
+
+        self.lineEdit_search = QLineEdit(self.widget_5)
+        self.lineEdit_search.setObjectName(u"lineEdit_search")
+        self.lineEdit_search.setStyleSheet(u"\n"
+"color: rgb(0, 0, 0);\n"
+"padding:  5px;\n"
+"border-radius:6px;\n"
+"border: 1px solid grey;")
+
+        self.verticalLayout_18.addWidget(self.lineEdit_search)
+
+
+        self.horizontalLayout_8.addLayout(self.verticalLayout_18)
+
+        self.verticalLayout_7 = QVBoxLayout()
+        self.verticalLayout_7.setObjectName(u"verticalLayout_7")
+        self.btn_s_h_o = QPushButton(self.widget_5)
+        self.btn_s_h_o.setObjectName(u"btn_s_h_o")
+        self.btn_s_h_o.setStyleSheet(u"color: rgb(0, 0, 0);\n"
+"padding: 10px;\n"
+"background-color: rgb(240, 240, 240);\n"
+"")
+
+        self.verticalLayout_7.addWidget(self.btn_s_h_o)
+
+
+        self.horizontalLayout_8.addLayout(self.verticalLayout_7)
+
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_8.addItem(self.horizontalSpacer_2)
+
 
         self.verticalLayout_20.addWidget(self.widget_5)
 
         self.progressBar = QProgressBar(self.page_history)
         self.progressBar.setObjectName(u"progressBar")
-        self.progressBar.setStyleSheet(u"color: rgb(192, 191, 188);")
+        self.progressBar.setStyleSheet(u" QProgressBar {\n"
+"        border: 2px solid rgba(33, 37, 43, 180);\n"
+"        border-radius: 5px;\n"
+"        text-align: center;\n"
+"        background-color: rgba(33, 37, 43, 180);\n"
+"        color: black;\n"
+"		height: 5px;\n"
+"    }\n"
+"    QProgressBar::chunk {\n"
+"        background-color: rgb(234, 234, 234);\n"
+"\n"
+"    }")
         self.progressBar.setValue(24)
 
         self.verticalLayout_20.addWidget(self.progressBar)
 
-        self.table_history_order = QTableWidget(self.page_history)
+        self.widget_6 = QWidget(self.page_history)
+        self.widget_6.setObjectName(u"widget_6")
+        self.verticalLayout_9 = QVBoxLayout(self.widget_6)
+        self.verticalLayout_9.setObjectName(u"verticalLayout_9")
+        self.table_history_order = QTableWidget(self.widget_6)
         if (self.table_history_order.columnCount() < 4):
             self.table_history_order.setColumnCount(4)
         __qtablewidgetitem2 = QTableWidgetItem()
@@ -812,7 +853,8 @@ class Ui_MainWindow(object):
         self.table_history_order.setObjectName(u"table_history_order")
         self.table_history_order.viewport().setProperty("cursor", QCursor(Qt.ArrowCursor))
         self.table_history_order.setStyleSheet(u"QTableWidget{\n"
-"	border:none;\n"
+"	border-bottom: 5px solid grey;\n"
+"	border-radius: 25px;\n"
 "}\n"
 "QHeaderView::section { \n"
 "padding: 10px;\n"
@@ -823,23 +865,13 @@ class Ui_MainWindow(object):
 "background-color: rgb(222, 221, 218);\n"
 "\n"
 "}\n"
-"QTableWidget::item:hover {\n"
-"	color: rgb(46, 52, 54);\n"
-"}\n"
-"QTableWidget::item {\n"
-"	background-color: rgb(246, 245, 244);\n"
-"	color: rgb(36, 31, 49);\n"
-"	margin-top: 3px;\n"
-"}\n"
-"QTableWidget::item:selected {\n"
-"	color: rgb(0, 0, 0);\n"
-"}\n"
 "QToolTip {\n"
 "	color: white; \n"
 "	background-color: rgb(165, 29, 45); \n"
 "	border: 1px solid gray;\n"
 " }")
         self.table_history_order.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.table_history_order.setAlternatingRowColors(True)
         self.table_history_order.setSelectionMode(QAbstractItemView.SingleSelection)
         self.table_history_order.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.table_history_order.setTextElideMode(Qt.ElideLeft)
@@ -850,7 +882,10 @@ class Ui_MainWindow(object):
         self.table_history_order.verticalHeader().setVisible(False)
         self.table_history_order.verticalHeader().setDefaultSectionSize(50)
 
-        self.verticalLayout_20.addWidget(self.table_history_order)
+        self.verticalLayout_9.addWidget(self.table_history_order)
+
+
+        self.verticalLayout_20.addWidget(self.widget_6)
 
         self.stackedWidget.addWidget(self.page_history)
 
@@ -874,14 +909,14 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(3)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Ordem de Servi\u00e7os", None))
         self.actionVoltar_para_tela_inicial.setText(QCoreApplication.translate("MainWindow", u"Voltar para tela inicial", None))
         self.actionLayout_Ordens.setText(QCoreApplication.translate("MainWindow", u"Layout Ordens", None))
         self.actionVisualizar_Layout.setText(QCoreApplication.translate("MainWindow", u"Visualizar Layout", None))
@@ -918,11 +953,11 @@ class Ui_MainWindow(object):
         self.btn_edit_categoria.setText(QCoreApplication.translate("MainWindow", u"EDITAR CATEGORIA", None))
         self.btn_pos_categoria.setText(QCoreApplication.translate("MainWindow", u"MUDAR POSI\u00c7\u00c3O DA CATEGORIA", None))
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"HISTORICO DE ORDENS", None))
-        self.lineEdit_search.setPlaceholderText(QCoreApplication.translate("MainWindow", u"PESQUISAR", None))
-        self.btn_s_h_o.setText(QCoreApplication.translate("MainWindow", u"BUSCAR", None))
         self.radio_all.setText(QCoreApplication.translate("MainWindow", u"Todos", None))
         self.radio_open.setText(QCoreApplication.translate("MainWindow", u"Abertas", None))
         self.radio_close.setText(QCoreApplication.translate("MainWindow", u"Finalizadas", None))
+        self.lineEdit_search.setPlaceholderText(QCoreApplication.translate("MainWindow", u"...", None))
+        self.btn_s_h_o.setText(QCoreApplication.translate("MainWindow", u"BUSCAR", None))
         ___qtablewidgetitem2 = self.table_history_order.horizontalHeaderItem(0)
         ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"ID ORDEM", None));
         ___qtablewidgetitem3 = self.table_history_order.horizontalHeaderItem(1)
