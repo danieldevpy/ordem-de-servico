@@ -397,7 +397,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.layout_data = QWidget()
         self.layout_data.setObjectName(u"layout_data")
-        self.layout_data.setGeometry(QRect(0, 0, 321, 261))
+        self.layout_data.setGeometry(QRect(0, 0, 667, 550))
         self.verticalLayout_16 = QVBoxLayout(self.layout_data)
         self.verticalLayout_16.setObjectName(u"verticalLayout_16")
         self.widget_ordem_servico = QWidget(self.layout_data)
@@ -465,6 +465,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
         self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout = QHBoxLayout()
+        self.horizontalLayout.setSpacing(10)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.label_dados_cliente = QLabel(self.widget_dados_cliente)
         self.label_dados_cliente.setObjectName(u"label_dados_cliente")
@@ -473,13 +474,24 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout.addWidget(self.label_dados_cliente)
 
+        self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout.addItem(self.horizontalSpacer_4)
+
         self.btn_save_cliente = QPushButton(self.widget_dados_cliente)
         self.btn_save_cliente.setObjectName(u"btn_save_cliente")
         self.btn_save_cliente.setStyleSheet(u"background-color: rgb(222, 221, 218);\n"
 "color:black;\n"
 "padding: 4px;")
 
-        self.horizontalLayout.addWidget(self.btn_save_cliente, 0, Qt.AlignRight)
+        self.horizontalLayout.addWidget(self.btn_save_cliente)
+
+        self.btn_del_cliente = QPushButton(self.widget_dados_cliente)
+        self.btn_del_cliente.setObjectName(u"btn_del_cliente")
+        self.btn_del_cliente.setStyleSheet(u"background-color: rgb(255, 0, 0);\n"
+"color: white;")
+
+        self.horizontalLayout.addWidget(self.btn_del_cliente)
 
 
         self.verticalLayout_4.addLayout(self.horizontalLayout)
@@ -576,10 +588,6 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_5.addWidget(self.line_5)
 
-        self.verticalSpacer_9 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Maximum)
-
-        self.verticalLayout_5.addItem(self.verticalSpacer_9)
-
         self.frame_make = QFrame(self.page_make)
         self.frame_make.setObjectName(u"frame_make")
         self.frame_make.setFrameShape(QFrame.StyledPanel)
@@ -593,71 +601,53 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_17.addWidget(self.label_10)
 
-        self.horizontalLayout_14 = QHBoxLayout()
-        self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
-        self.label_12 = QLabel(self.frame_make)
+        self.stackedWidget_edit = QStackedWidget(self.frame_make)
+        self.stackedWidget_edit.setObjectName(u"stackedWidget_edit")
+        self.page_ctg = QWidget()
+        self.page_ctg.setObjectName(u"page_ctg")
+        self.verticalLayout_24 = QVBoxLayout(self.page_ctg)
+        self.verticalLayout_24.setSpacing(12)
+        self.verticalLayout_24.setObjectName(u"verticalLayout_24")
+        self.label_12 = QLabel(self.page_ctg)
         self.label_12.setObjectName(u"label_12")
         self.label_12.setStyleSheet(u"color: rgb(36, 31, 49);")
 
-        self.horizontalLayout_14.addWidget(self.label_12)
+        self.verticalLayout_24.addWidget(self.label_12)
 
-        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_14.addItem(self.horizontalSpacer)
-
-        self.label_13 = QLabel(self.frame_make)
-        self.label_13.setObjectName(u"label_13")
-        self.label_13.setStyleSheet(u"color: rgb(36, 31, 49);")
-
-        self.horizontalLayout_14.addWidget(self.label_13)
-
-        self.label_category_layout = QLabel(self.frame_make)
-        self.label_category_layout.setObjectName(u"label_category_layout")
-        self.label_category_layout.setStyleSheet(u"color: rgb(237, 51, 59);")
-
-        self.horizontalLayout_14.addWidget(self.label_category_layout)
-
-
-        self.verticalLayout_17.addLayout(self.horizontalLayout_14)
-
-        self.horizontalLayout_15 = QHBoxLayout()
-        self.horizontalLayout_15.setObjectName(u"horizontalLayout_15")
-        self.list_categoria = QListWidget(self.frame_make)
+        self.list_categoria = QListWidget(self.page_ctg)
+        QListWidgetItem(self.list_categoria)
+        QListWidgetItem(self.list_categoria)
         self.list_categoria.setObjectName(u"list_categoria")
         sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.list_categoria.sizePolicy().hasHeightForWidth())
         self.list_categoria.setSizePolicy(sizePolicy)
-        self.list_categoria.setStyleSheet(u"color:black;")
+        self.list_categoria.setStyleSheet(u"    QListWidget {\n"
+"		border: 1px solid grey;\n"
+"		color:black;\n"
+"		border-radius: 6px;\n"
+"		padding: 6px;\n"
+"    }\n"
+"\n"
+"    QListWidget::Item {\n"
+"        border-bottom: 1px solid #d0d0d0;  /* Borda inferior de cada item */\n"
+"		height: 30px;\n"
+"        padding: 5px;\n"
+"    }\n"
+"\n"
+"    QListWidget::Item:selected {\n"
+"        background-color: rgb(234, 234, 234);\n"
+"		color:black;\n"
+"    }\n"
+"")
         self.list_categoria.setSelectionMode(QAbstractItemView.MultiSelection)
 
-        self.horizontalLayout_15.addWidget(self.list_categoria)
-
-        self.table_categoria = QTableWidget(self.frame_make)
-        if (self.table_categoria.columnCount() < 2):
-            self.table_categoria.setColumnCount(2)
-        __qtablewidgetitem = QTableWidgetItem()
-        self.table_categoria.setHorizontalHeaderItem(0, __qtablewidgetitem)
-        __qtablewidgetitem1 = QTableWidgetItem()
-        self.table_categoria.setHorizontalHeaderItem(1, __qtablewidgetitem1)
-        self.table_categoria.setObjectName(u"table_categoria")
-        self.table_categoria.setStyleSheet(u"color:black;")
-        self.table_categoria.setEditTriggers(QAbstractItemView.NoEditTriggers)
-        self.table_categoria.setSelectionMode(QAbstractItemView.SingleSelection)
-        self.table_categoria.setSelectionBehavior(QAbstractItemView.SelectRows)
-        self.table_categoria.horizontalHeader().setMinimumSectionSize(180)
-        self.table_categoria.horizontalHeader().setStretchLastSection(True)
-        self.table_categoria.verticalHeader().setDefaultSectionSize(50)
-
-        self.horizontalLayout_15.addWidget(self.table_categoria)
-
-
-        self.verticalLayout_17.addLayout(self.horizontalLayout_15)
+        self.verticalLayout_24.addWidget(self.list_categoria)
 
         self.horizontalLayout_16 = QHBoxLayout()
         self.horizontalLayout_16.setObjectName(u"horizontalLayout_16")
-        self.btn_create_categoria = QPushButton(self.frame_make)
+        self.btn_create_categoria = QPushButton(self.page_ctg)
         self.btn_create_categoria.setObjectName(u"btn_create_categoria")
         self.btn_create_categoria.setStyleSheet(u"QPushButton{\n"
 "	height: 30px;\n"
@@ -672,7 +662,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_16.addWidget(self.btn_create_categoria)
 
-        self.btn_edit_categoria = QPushButton(self.frame_make)
+        self.btn_edit_categoria = QPushButton(self.page_ctg)
         self.btn_edit_categoria.setObjectName(u"btn_edit_categoria")
         self.btn_edit_categoria.setStyleSheet(u"QPushButton{\n"
 "	height: 30px;\n"
@@ -687,7 +677,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_16.addWidget(self.btn_edit_categoria)
 
-        self.btn_pos_categoria = QPushButton(self.frame_make)
+        self.btn_pos_categoria = QPushButton(self.page_ctg)
         self.btn_pos_categoria.setObjectName(u"btn_pos_categoria")
         self.btn_pos_categoria.setStyleSheet(u"QPushButton{\n"
 "	height: 30px;\n"
@@ -704,11 +694,85 @@ class Ui_MainWindow(object):
         self.horizontalLayout_16.addWidget(self.btn_pos_categoria)
 
 
-        self.verticalLayout_17.addLayout(self.horizontalLayout_16)
+        self.verticalLayout_24.addLayout(self.horizontalLayout_16)
 
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
-        self.verticalLayout_17.addItem(self.verticalSpacer)
+        self.verticalLayout_24.addItem(self.verticalSpacer)
+
+        self.stackedWidget_edit.addWidget(self.page_ctg)
+        self.page_fields = QWidget()
+        self.page_fields.setObjectName(u"page_fields")
+        self.verticalLayout_25 = QVBoxLayout(self.page_fields)
+        self.verticalLayout_25.setSpacing(12)
+        self.verticalLayout_25.setObjectName(u"verticalLayout_25")
+        self.horizontalLayout_12 = QHBoxLayout()
+        self.horizontalLayout_12.setSpacing(24)
+        self.horizontalLayout_12.setObjectName(u"horizontalLayout_12")
+        self.label_13 = QLabel(self.page_fields)
+        self.label_13.setObjectName(u"label_13")
+        self.label_13.setStyleSheet(u"color: rgb(36, 31, 49);")
+
+        self.horizontalLayout_12.addWidget(self.label_13)
+
+        self.label_category_layout = QLabel(self.page_fields)
+        self.label_category_layout.setObjectName(u"label_category_layout")
+        self.label_category_layout.setStyleSheet(u"color: rgb(255, 0, 0);\n"
+"font-weight: 800;")
+
+        self.horizontalLayout_12.addWidget(self.label_category_layout)
+
+        self.btn_back_to_ctg = QPushButton(self.page_fields)
+        self.btn_back_to_ctg.setObjectName(u"btn_back_to_ctg")
+        self.btn_back_to_ctg.setStyleSheet(u"background-color: rgb(255, 134, 134);\n"
+"color: white;\n"
+"font-weight: 800;")
+
+        self.horizontalLayout_12.addWidget(self.btn_back_to_ctg)
+
+        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_12.addItem(self.horizontalSpacer)
+
+
+        self.verticalLayout_25.addLayout(self.horizontalLayout_12)
+
+        self.table_categoria = QTableWidget(self.page_fields)
+        if (self.table_categoria.columnCount() < 2):
+            self.table_categoria.setColumnCount(2)
+        __qtablewidgetitem = QTableWidgetItem()
+        self.table_categoria.setHorizontalHeaderItem(0, __qtablewidgetitem)
+        __qtablewidgetitem1 = QTableWidgetItem()
+        self.table_categoria.setHorizontalHeaderItem(1, __qtablewidgetitem1)
+        self.table_categoria.setObjectName(u"table_categoria")
+        self.table_categoria.setStyleSheet(u"QTableWidget{\n"
+"	border-bottom: 5px solid grey;\n"
+"	border-radius: 25px;\n"
+"}\n"
+"QHeaderView::section { \n"
+"padding: 5px;\n"
+"border-radius:6px;\n"
+"margin-left: 3px;\n"
+"margin-right: 3px;\n"
+"color: rgb(36, 31, 49);\n"
+"}\n"
+"")
+        self.table_categoria.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.table_categoria.setSelectionMode(QAbstractItemView.SingleSelection)
+        self.table_categoria.setSelectionBehavior(QAbstractItemView.SelectRows)
+        self.table_categoria.horizontalHeader().setMinimumSectionSize(180)
+        self.table_categoria.horizontalHeader().setStretchLastSection(True)
+        self.table_categoria.verticalHeader().setDefaultSectionSize(50)
+
+        self.verticalLayout_25.addWidget(self.table_categoria)
+
+        self.verticalSpacer_9 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Minimum)
+
+        self.verticalLayout_25.addItem(self.verticalSpacer_9)
+
+        self.stackedWidget_edit.addWidget(self.page_fields)
+
+        self.verticalLayout_17.addWidget(self.stackedWidget_edit)
 
 
         self.verticalLayout_5.addWidget(self.frame_make)
@@ -909,7 +973,8 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(3)
+        self.stackedWidget.setCurrentIndex(2)
+        self.stackedWidget_edit.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -937,21 +1002,32 @@ class Ui_MainWindow(object):
         self.label_cliente.setText(QCoreApplication.translate("MainWindow", u"Cliente", None))
         self.label_dados_cliente.setText(QCoreApplication.translate("MainWindow", u"DADOS DO CLIENTE", None))
         self.btn_save_cliente.setText(QCoreApplication.translate("MainWindow", u"SALVAR CLIENTE", None))
+        self.btn_del_cliente.setText(QCoreApplication.translate("MainWindow", u"APAGAR", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Nome Completo", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Celular", None))
         self.btn_gravar.setText(QCoreApplication.translate("MainWindow", u"Registrar Ordem", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"Edi\u00e7\u00e3o da Ordem de Servi\u00e7o", None))
-        self.label_10.setText(QCoreApplication.translate("MainWindow", u"MENU DE CRIA\u00c7\u00c3O DE CATEGORIAS", None))
+        self.label_10.setText(QCoreApplication.translate("MainWindow", u"MENU DE CRIA\u00c7\u00c3O DO FORMULARIO", None))
         self.label_12.setText(QCoreApplication.translate("MainWindow", u"CATEGORIAS", None))
+
+        __sortingEnabled = self.list_categoria.isSortingEnabled()
+        self.list_categoria.setSortingEnabled(False)
+        ___qlistwidgetitem = self.list_categoria.item(0)
+        ___qlistwidgetitem.setText(QCoreApplication.translate("MainWindow", u"Dados do Veiculo", None));
+        ___qlistwidgetitem1 = self.list_categoria.item(1)
+        ___qlistwidgetitem1.setText(QCoreApplication.translate("MainWindow", u"Lista de Pe\u00e7as", None));
+        self.list_categoria.setSortingEnabled(__sortingEnabled)
+
+        self.btn_create_categoria.setText(QCoreApplication.translate("MainWindow", u"CRIAR NOVA CATEGORIA", None))
+        self.btn_edit_categoria.setText(QCoreApplication.translate("MainWindow", u"EDITAR CATEGORIA", None))
+        self.btn_pos_categoria.setText(QCoreApplication.translate("MainWindow", u"MUDAR POSI\u00c7\u00c3O DA CATEGORIA", None))
         self.label_13.setText(QCoreApplication.translate("MainWindow", u"CAMPOS DA CATEGORIA", None))
         self.label_category_layout.setText("")
+        self.btn_back_to_ctg.setText(QCoreApplication.translate("MainWindow", u"VOLTAR", None))
         ___qtablewidgetitem = self.table_categoria.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"NOME DO CAMPO", None));
         ___qtablewidgetitem1 = self.table_categoria.horizontalHeaderItem(1)
         ___qtablewidgetitem1.setText(QCoreApplication.translate("MainWindow", u"TIPO DO CAMPO", None));
-        self.btn_create_categoria.setText(QCoreApplication.translate("MainWindow", u"CRIAR NOVA CATEGORIA", None))
-        self.btn_edit_categoria.setText(QCoreApplication.translate("MainWindow", u"EDITAR CATEGORIA", None))
-        self.btn_pos_categoria.setText(QCoreApplication.translate("MainWindow", u"MUDAR POSI\u00c7\u00c3O DA CATEGORIA", None))
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"HISTORICO DE ORDENS", None))
         self.radio_all.setText(QCoreApplication.translate("MainWindow", u"Todos", None))
         self.radio_open.setText(QCoreApplication.translate("MainWindow", u"Abertas", None))

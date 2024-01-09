@@ -25,7 +25,9 @@ class LayoutOrderPage(PageRepository):
         self.page.btn_create_categoria.clicked.connect(self._create_category)
         self.page.btn_edit_categoria.clicked.connect(self._edit_category)
         self.page.btn_pos_categoria.clicked.connect(self._invert_position)
+        self.page.btn_back_to_ctg.clicked.connect(lambda: self.page.stackedWidget_edit.setCurrentIndex(0))
         # # functions
+        self.page.stackedWidget_edit.setCurrentIndex(0)
         self._set_categorys()
 
 
@@ -61,6 +63,7 @@ class LayoutOrderPage(PageRepository):
         self.page.label_category_layout.setText(category.name)
         self.page.table_categoria.setVisible(True)
         self._set_table(category.fields)
+        self.page.stackedWidget_edit.setCurrentIndex(1)
 
 
     def _set_table(self, fields: List[Fields]):

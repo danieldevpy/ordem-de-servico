@@ -37,3 +37,14 @@ def get_clientes() -> List[Cliente]:
                 obj = Entity(**atributos)
                 list_clientes.append(obj)
         return list_clientes
+    
+def del_cliente(cliente: Cliente):
+    with Session(engine) as session:
+        statement = select(Cliente).where(Cliente.id == cliente.id)
+        db_cliente = session.exec(statement).first()
+        try:
+            session.delete(db_cliente)
+            session.commit()
+            return True
+        except:
+            return False

@@ -55,8 +55,6 @@ class HistoryPage:
         self.filter_orders = orders
 
     def _set_filter_fields(self, search):
-
-        
         self.th_search = QThread()
         self.worker = WorkerSearch()
         # config worker
@@ -73,16 +71,13 @@ class HistoryPage:
             self.th_search.start()
             return self._set_filter(search)
         self.worker.finish.connect(self._set_filter)
-      
         self.th_search.start()
-
 
     def _search_orders(self):
         field = self.page.comboBox_search.currentText()
         search = self.page.lineEdit_search.text()
         if not field or not search:
             return
-
         self.th_filter = QThread()
         self.worker = WorkerFilter()
         # config worker
@@ -103,7 +98,6 @@ class HistoryPage:
         self.page.btn_s_h_o.setEnabled(False)
 
     def _set_filter(self, search=None):
-  
         options = {1: True, 2: False}
         orders = []
         for order in self.orders:
@@ -113,7 +107,6 @@ class HistoryPage:
             else:
                 orders.append(order)
         self.filter_orders = orders
-        print(search)
         match search:
             case None:
                 self.page.radio_all.setChecked(True)
@@ -121,7 +114,6 @@ class HistoryPage:
                 self.page.radio_open.setChecked(True)
             case 2:
                 self.page.radio_close.setChecked(True)
-               
         self._set_orders()
 
     def _set_orders(self):
@@ -151,7 +143,7 @@ class HistoryPage:
         pdf_view.update_status = self._set_filter
         pdf_view.remove_order = self._remove_order_list
         pdf_view.show()
-        pdf_view.hide(self.page)
+        pdf_view.hide(None)
 
     def _change_cursor(self, item):
         cursor = item.data(Qt.UserRole)

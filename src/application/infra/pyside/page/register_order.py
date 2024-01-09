@@ -72,11 +72,14 @@ class RegisterOrderPage:
         self.page.btn_gravar.clicked.connect(self._create_order)
         self.page.comboBox_cliente.currentIndexChanged.connect(self._combobox_changed)
         self.page.btn_save_cliente.clicked.connect(self._save_cliente)
+        self.page.btn_del_cliente.clicked.connect(self._del_cliente_)
+
 
     def _desconfig_widgets(self):
         self.page.btn_gravar.clicked.disconnect(self._create_order)
         self.page.comboBox_cliente.currentIndexChanged.disconnect(self._combobox_changed)
         self.page.btn_save_cliente.clicked.disconnect(self._save_cliente)
+        self.page.btn_del_cliente.clicked.disconnect(self._del_cliente_)
 
     def _clear_texts(self):
         if self.fields:
@@ -87,6 +90,8 @@ class RegisterOrderPage:
                         widget.clear()
                     except:
                         widget.clear_object()
+                        
+        self.page.comboBox_cliente.setCurrentIndex(0)
 
     
     def _combobox_changed(self):
@@ -100,10 +105,15 @@ class RegisterOrderPage:
             self.memory['widget'] = index
             self.page.line_nome_completo.setText(cliente.name)
             self.page.line_celular_cliente.setText(cliente.cel)
+            self.page.btn_save_cliente.setText("ATUALIZAR DADOS DO CLIENTE")
+            self.page.btn_del_cliente.setVisible(True)
         else:
             self.clientes['selected'] = None
             self.page.line_nome_completo.setText("")
             self.page.line_celular_cliente.setText("")
+            self.page.btn_save_cliente.setText("SALVAR NOVO CLIENTE")
+            self.page.btn_del_cliente.setVisible(False)
+
 
     def _save_cliente(self):
         cliente = self.clientes['selected']
@@ -118,21 +128,39 @@ class RegisterOrderPage:
             cel = self.page.line_celular_cliente.text()
             if name:
                 c = crud_clientes.add_cliente_fields(name=name, cel=cel)
+                self.clientes['list'].append(c)
+                self.page.comboBox_cliente.addItem(c.name)
+                self.page.comboBox_cliente.setCurrentIndex(self.page.comboBox_cliente.count()-1)
                 show_message("sucess", "Registrar Cliente", f"O cliente {name} foi registrado!")
 
+    def _del_cliente_(self):
+        cliente = self.clientes['selected']
+        if not cliente:
+            return
+        response = crud_clientes.del_cliente(cliente)
+        if not response:
+            print("error")
+        self.page.comboBox_cliente.removeItem(self.page.comboBox_cliente.currentIndex())
+        self.page.comboBox_cliente.setCurrentIndex(0)
+       
 
     def _create_order(self):
         order = {}
         if self.fields:
             for category in self.fields:
-                order[category] = {}
+               
                 for field in self.fields[category]:
+                    text = None
                     widget = self.fields[category][field]
                     try:
-                        order[category][field] = widget.get_text_object()
+                        text = widget.get_text_object()
                     except:
-                        order[category][field] = widget.text()
-                        
+                        text = widget.text()
+                    if text:
+                        if not category in order:
+                            order[category] = {}
+                        order[category][field] = text
+ 
         id_ordem, err = crud_order.create_order(str(order))
         if id_ordem:
             show_message('sucess', 'Sucesso', f'Ordem registrada com sucesso! ID: {id_ordem}')

@@ -46,7 +46,7 @@
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="main_page">
        <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -574,8 +574,8 @@ QListWidget::item {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>321</width>
-             <height>261</height>
+             <width>667</width>
+             <height>550</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_16">
@@ -676,6 +676,9 @@ font-size: 16px;</string>
                   </property>
                   <item>
                    <layout class="QHBoxLayout" name="horizontalLayout">
+                    <property name="spacing">
+                     <number>10</number>
+                    </property>
                     <item>
                      <widget class="QLabel" name="label_dados_cliente">
                       <property name="styleSheet">
@@ -687,7 +690,20 @@ font-size: 20px;</string>
                       </property>
                      </widget>
                     </item>
-                    <item alignment="Qt::AlignRight">
+                    <item>
+                     <spacer name="horizontalSpacer_4">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>40</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                    <item>
                      <widget class="QPushButton" name="btn_save_cliente">
                       <property name="styleSheet">
                        <string notr="true">background-color: rgb(222, 221, 218);
@@ -696,6 +712,17 @@ padding: 4px;</string>
                       </property>
                       <property name="text">
                        <string>SALVAR CLIENTE</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="btn_del_cliente">
+                      <property name="styleSheet">
+                       <string notr="true">background-color: rgb(255, 0, 0);
+color: white;</string>
+                      </property>
+                      <property name="text">
+                       <string>APAGAR</string>
                       </property>
                      </widget>
                     </item>
@@ -809,22 +836,6 @@ font-size: 24px;</string>
          </widget>
         </item>
         <item>
-         <spacer name="verticalSpacer_9">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeType">
-           <enum>QSizePolicy::Maximum</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
          <widget class="QFrame" name="frame_make">
           <property name="frameShape">
            <enum>QFrame::StyledPanel</enum>
@@ -840,118 +851,79 @@ font-size: 24px;</string>
 font-size: 16px;</string>
              </property>
              <property name="text">
-              <string>MENU DE CRIAÇÃO DE CATEGORIAS</string>
+              <string>MENU DE CRIAÇÃO DO FORMULARIO</string>
              </property>
             </widget>
            </item>
            <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_14">
-             <item>
-              <widget class="QLabel" name="label_12">
-               <property name="styleSheet">
-                <string notr="true">color: rgb(36, 31, 49);</string>
+            <widget class="QStackedWidget" name="stackedWidget_edit">
+             <property name="currentIndex">
+              <number>1</number>
+             </property>
+             <widget class="QWidget" name="page_ctg">
+              <layout class="QVBoxLayout" name="verticalLayout_24">
+               <property name="spacing">
+                <number>12</number>
                </property>
-               <property name="text">
-                <string>CATEGORIAS</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item>
-              <widget class="QLabel" name="label_13">
-               <property name="styleSheet">
-                <string notr="true">color: rgb(36, 31, 49);</string>
-               </property>
-               <property name="text">
-                <string>CAMPOS DA CATEGORIA</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLabel" name="label_category_layout">
-               <property name="styleSheet">
-                <string notr="true">color: rgb(237, 51, 59);</string>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_15">
-             <item>
-              <widget class="QListWidget" name="list_categoria">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">color:black;</string>
-               </property>
-               <property name="selectionMode">
-                <enum>QAbstractItemView::MultiSelection</enum>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QTableWidget" name="table_categoria">
-               <property name="styleSheet">
-                <string notr="true">color:black;</string>
-               </property>
-               <property name="editTriggers">
-                <set>QAbstractItemView::NoEditTriggers</set>
-               </property>
-               <property name="selectionMode">
-                <enum>QAbstractItemView::SingleSelection</enum>
-               </property>
-               <property name="selectionBehavior">
-                <enum>QAbstractItemView::SelectRows</enum>
-               </property>
-               <attribute name="horizontalHeaderMinimumSectionSize">
-                <number>180</number>
-               </attribute>
-               <attribute name="horizontalHeaderStretchLastSection">
-                <bool>true</bool>
-               </attribute>
-               <attribute name="verticalHeaderDefaultSectionSize">
-                <number>50</number>
-               </attribute>
-               <column>
-                <property name="text">
-                 <string>NOME DO CAMPO</string>
-                </property>
-               </column>
-               <column>
-                <property name="text">
-                 <string>TIPO DO CAMPO</string>
-                </property>
-               </column>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_16">
-             <item>
-              <widget class="QPushButton" name="btn_create_categoria">
-               <property name="styleSheet">
-                <string notr="true">QPushButton{
+               <item>
+                <widget class="QLabel" name="label_12">
+                 <property name="styleSheet">
+                  <string notr="true">color: rgb(36, 31, 49);</string>
+                 </property>
+                 <property name="text">
+                  <string>CATEGORIAS</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QListWidget" name="list_categoria">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">    QListWidget {
+		border: 1px solid grey;
+		color:black;
+		border-radius: 6px;
+		padding: 6px;
+    }
+
+    QListWidget::Item {
+        border-bottom: 1px solid #d0d0d0;  /* Borda inferior de cada item */
+		height: 30px;
+        padding: 5px;
+    }
+
+    QListWidget::Item:selected {
+        background-color: rgb(234, 234, 234);
+		color:black;
+    }
+</string>
+                 </property>
+                 <property name="selectionMode">
+                  <enum>QAbstractItemView::MultiSelection</enum>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>Dados do Veiculo</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Lista de Peças</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_16">
+                 <item>
+                  <widget class="QPushButton" name="btn_create_categoria">
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton{
 	height: 30px;
 	background-color: rgb(143, 240, 164);
 	border-radius: 6px;
@@ -961,16 +933,16 @@ QPushButton::hover{
 	
 	background-color: rgb(51, 209, 122);
 }</string>
-               </property>
-               <property name="text">
-                <string>CRIAR NOVA CATEGORIA</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="btn_edit_categoria">
-               <property name="styleSheet">
-                <string notr="true">QPushButton{
+                   </property>
+                   <property name="text">
+                    <string>CRIAR NOVA CATEGORIA</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="btn_edit_categoria">
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton{
 	height: 30px;
 	
 	background-color: rgb(249, 240, 107);
@@ -980,16 +952,16 @@ QPushButton::hover{
 QPushButton::hover{
 	background-color: rgb(246, 211, 45);
 }</string>
-               </property>
-               <property name="text">
-                <string>EDITAR CATEGORIA</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="btn_pos_categoria">
-               <property name="styleSheet">
-                <string notr="true">QPushButton{
+                   </property>
+                   <property name="text">
+                    <string>EDITAR CATEGORIA</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="btn_pos_categoria">
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton{
 	height: 30px;
 	
 	background-color: rgb(246, 97, 81);
@@ -1000,29 +972,152 @@ QPushButton::hover{
 	
 	background-color: rgb(224, 27, 36);
 }</string>
+                   </property>
+                   <property name="text">
+                    <string>MUDAR POSIÇÃO DA CATEGORIA</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <spacer name="verticalSpacer">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="page_fields">
+              <layout class="QVBoxLayout" name="verticalLayout_25">
+               <property name="spacing">
+                <number>12</number>
                </property>
-               <property name="text">
-                <string>MUDAR POSIÇÃO DA CATEGORIA</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <spacer name="verticalSpacer">
-             <property name="orientation">
-              <enum>Qt::Vertical</enum>
-             </property>
-             <property name="sizeType">
-              <enum>QSizePolicy::Expanding</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>20</width>
-               <height>40</height>
-              </size>
-             </property>
-            </spacer>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_12">
+                 <property name="spacing">
+                  <number>24</number>
+                 </property>
+                 <item>
+                  <widget class="QLabel" name="label_13">
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(36, 31, 49);</string>
+                   </property>
+                   <property name="text">
+                    <string>CAMPOS DA CATEGORIA</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="label_category_layout">
+                   <property name="styleSheet">
+                    <string notr="true">color: rgb(255, 0, 0);
+font-weight: 800;</string>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="btn_back_to_ctg">
+                   <property name="styleSheet">
+                    <string notr="true">background-color: rgb(255, 134, 134);
+color: white;
+font-weight: 800;</string>
+                   </property>
+                   <property name="text">
+                    <string>VOLTAR</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <widget class="QTableWidget" name="table_categoria">
+                 <property name="styleSheet">
+                  <string notr="true">QTableWidget{
+	border-bottom: 5px solid grey;
+	border-radius: 25px;
+}
+QHeaderView::section { 
+padding: 5px;
+border-radius:6px;
+margin-left: 3px;
+margin-right: 3px;
+color: rgb(36, 31, 49);
+}
+</string>
+                 </property>
+                 <property name="editTriggers">
+                  <set>QAbstractItemView::NoEditTriggers</set>
+                 </property>
+                 <property name="selectionMode">
+                  <enum>QAbstractItemView::SingleSelection</enum>
+                 </property>
+                 <property name="selectionBehavior">
+                  <enum>QAbstractItemView::SelectRows</enum>
+                 </property>
+                 <attribute name="horizontalHeaderMinimumSectionSize">
+                  <number>180</number>
+                 </attribute>
+                 <attribute name="horizontalHeaderStretchLastSection">
+                  <bool>true</bool>
+                 </attribute>
+                 <attribute name="verticalHeaderDefaultSectionSize">
+                  <number>50</number>
+                 </attribute>
+                 <column>
+                  <property name="text">
+                   <string>NOME DO CAMPO</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>TIPO DO CAMPO</string>
+                  </property>
+                 </column>
+                </widget>
+               </item>
+               <item>
+                <spacer name="verticalSpacer_9">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeType">
+                  <enum>QSizePolicy::Minimum</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </widget>
+            </widget>
            </item>
           </layout>
          </widget>

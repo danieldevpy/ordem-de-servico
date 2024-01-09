@@ -36,7 +36,7 @@ class CreateFields:
         
             if category.fields:
                 text_short = [True for field in category.fields if field.type_field == "texto curto"]
-                if len(text_short) == 2:
+                if len(text_short) >= 2:
                 
                     vertical_duple = QHBoxLayout(frame)
                     vertical_duple.setContentsMargins(0, 0, 0, 0)
